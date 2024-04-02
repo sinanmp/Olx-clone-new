@@ -83,7 +83,7 @@ function navbar() {
         <NotificationsIcon className='cursor-pointer' />
         </div>
        <div onClick={handleProfileClick} className='cursor-pointer'>
-          <img src={user.photoUrl ? user.photoUrl : 'https://media.istockphoto.com/id/1495088043/vector/user-profile-icon-avatar-or-person-icon-profile-picture-portrait-symbol-default-portrait.jpg?s=612x612&w=0&k=20&c=dhV2p1JwmloBTOaGAtaA3AW1KSnjsdMt7-U_3EZElZ0='} alt="" style={{ width: '30px', height: '30px', borderRadius: '50%' }} />
+          <img src={user.photoURL ? user.photoURL : 'https://media.istockphoto.com/id/1495088043/vector/user-profile-icon-avatar-or-person-icon-profile-picture-portrait-symbol-default-portrait.jpg?s=612x612&w=0&k=20&c=dhV2p1JwmloBTOaGAtaA3AW1KSnjsdMt7-U_3EZElZ0='} alt="" style={{ width: '30px', height: '30px', borderRadius: '50%' }} />
        </div>
           </div>
       )}

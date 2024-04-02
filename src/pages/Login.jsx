@@ -5,8 +5,12 @@ import { loginUser } from '../context/authContext'
 import { toast } from 'react-toastify';
 import Nav from '../components/Nav';
 import Footer from '../components/footer';
+import '../assets/google.css'
+import { handleGoogleSignIn } from '../context/authContext';
+import LoadingSpinner from '../components/LoadingSniper';
 
 function Login(){
+  const [loading, setLoading] = useState(false); 
     const [email ,setEmail] =useState('')
     const [password , setPassword] = useState('')
     const navigate = useNavigate()
@@ -14,6 +18,7 @@ function Login(){
 
     const handleFormSubmit =async(e)=>{
         e.preventDefault()
+        setLoading(true);
         try {
             const data = await loginUser(email,password)
             console.log(data)
@@ -23,12 +28,30 @@ function Login(){
             });
         } catch (error) {
             console.log(error)
+        } finally {
+          setLoading(false);
         }
 
     }
 
+    const handleGoogle = async(e)=>{
+      setLoading(true)
+      try {
+        await handleGoogleSignIn()
+        navigate('/')
+        toast.success('Logged In',{
+          autoClose:1000
+        })
+      } catch (error) {
+        console.log(error)
+      } finally {
+        setLoading(false)
+      }
+    }
+
   return (
     <>
+        {loading && <LoadingSpinner />} 
      <Nav/>
 
       <div className="flex justify-center items-center h-[90vh]">
@@ -65,8 +88,10 @@ function Login(){
                 )}
             </button>
             </div>
-        <button className="w-full bg-blue-500 text-white py-2 rounded-md hover:bg-blue-600 transition duration-300">Login</button>
+        <button className="w-full mb-3 bg-blue-500 text-white py-2 rounded-md hover:bg-blue-600 transition duration-300">Login</button>
+              <div id='btn2' onClick={handleGoogle} className='btn max-md:w-60 self-center'><img className='googleImage mr-2' src="https://i.imgur.com/8qKdyAR.png" alt="" />Continue with Google</div>
       </form>
+
       <p className="text-center mt-4">Don't have an account? <a  onClick={()=> navigate('/signup')} className="text-blue-500 cursor-pointer">Signup</a></p>
     </div>
   </div>

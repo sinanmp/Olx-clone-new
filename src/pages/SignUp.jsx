@@ -1,13 +1,16 @@
 import React, { useState } from 'react';
 import logo from '../assets/olx-seeklogo.png'
 import { BsEyeFill, BsEyeSlashFill } from "react-icons/bs";
-import { signUp } from '../context/authContext';
+import { handleGoogleSignIn, signUp } from '../context/authContext';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import Nav from '../components/Nav';
+import '../assets/google.css'
 import Footer from '../components/footer';
+import LoadingSpinner from '../components/LoadingSniper';
 
 export default function Signup() {
+  const [loading , setLoading] = useState(false)
     let [name , setName] = useState('')
     let [email , setEmail] = useState('')
     let [phone ,setPhone] = useState('')
@@ -18,6 +21,7 @@ export default function Signup() {
 
     const handleFormSubmit = async(e)=>{
         e.preventDefault()
+        setLoading(true);
         try {
             await signUp(name ,email,password,phone)
             navigate('/')
@@ -26,12 +30,32 @@ export default function Signup() {
             });
         } catch (error) {
             console.log(error)
+        } finally {
+          setLoading(false);
         }
+    }
+
+
+    
+    const handleGoogle = async(e)=>{
+      try {
+        setLoading(true)
+        await handleGoogleSignIn()
+        navigate('/')
+        toast.success('Logged In',{
+          autoClose:1000
+        })
+      } catch (error) {
+        console.log(error)
+      } finally {
+        setLoading(false)
+      }
     }
 
 
   return (
     <>
+     {loading && <LoadingSpinner />} 
       <Nav/>
 
 
@@ -88,7 +112,8 @@ export default function Signup() {
     )}
   </button>
 </div>
-      <button type='submit' className="w-full bg-blue-500 text-white py-2 rounded-md hover:bg-blue-600 transition duration-300">Signup</button>
+      <button type='submit' className="w-full bg-blue-500 mb-3 text-white py-2 rounded-md hover:bg-blue-600 transition duration-300">Signup</button>
+      <div id='btn2' onClick={handleGoogle} className='btn  max-md:w-60 self-center'><img className='googleImage mr-2' src="https://i.imgur.com/8qKdyAR.png" alt="" />Continue with Google</div>
     </form>
     <p className="text-center mt-4">Already have an account? <a onClick={()=>navigate('/login')} className="text-blue-500 cursor-pointer">Login</a></p>
   </div>

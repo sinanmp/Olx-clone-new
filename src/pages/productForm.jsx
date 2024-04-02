@@ -6,8 +6,11 @@ import { addAd } from '../context/authContext';
 import { toast } from 'react-toastify';
 import { useAuth } from '../context/authContext';
 import {ref, uploadBytes, getDownloadURL} from 'firebase/storage' 
+import ArrowBackIcon from '@mui/icons-material/ArrowBack'; 
+import LoadingSpinner from '../components/LoadingSniper';
 
 function ProductForm() {
+    const [loading, setLoading] = useState(false); 
     const {user , storage} = useAuth()
     const location = useLocation()
     const navigate = useNavigate()
@@ -37,8 +40,7 @@ function ProductForm() {
 
   const handleSubmit = async(e) => {
     e.preventDefault();
-
-
+    setLoading(true);
     try{
 
         const storageRef = ref(storage, `/images/${productImage.name}`);
@@ -62,14 +64,17 @@ function ProductForm() {
         })
     } catch (error) {
         console.log(error)
-    }
+    } finally {
+        setLoading(false);
+      }
   };
  
     
   return (
     <>
+       {loading && <LoadingSpinner />} 
     <nav className='w-full fixed z-10 bg-slate-50 h-[50px] border-b border-gray-300'>
-        <IoArrowBackCircleOutline onClick={()=>navigate('/sell')} className="ml-3 mt-3 cursor-pointer" /> 
+        <ArrowBackIcon onClick={()=>navigate('/sell')} className="ml-3 mt-3 cursor-pointer" /> 
       </nav>
     
     <div className='relative top-32'>

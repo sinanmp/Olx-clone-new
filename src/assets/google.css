@@ -1,0 +1,28 @@
+ 
+    .googleImage{
+        height: 20px;
+    }
+
+  #btn2{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+
+
+  .btn{
+    margin: 10px;
+    padding: 10px;
+    border: solid gray 1px;
+    border-radius: 15px;
+    color: grey;
+    text-transform: uppercase;
+    font-family: "Josefin sans";
+    cursor: pointer;
+    position: relative;
+  }
+  .btn:hover{
+    background-color: rgb(90, 84, 84);
+    color: black;
+  }

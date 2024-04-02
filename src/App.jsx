@@ -6,6 +6,7 @@ import Login from './pages/Login'
 import SignUp from './pages/SignUp'
 import SellPage from './pages/SellPage'
 import ProductForm from './pages/productForm'
+import MyAds from './pages/MyAds'
 
 function App() {
 
@@ -17,6 +18,7 @@ function App() {
    <Route path='/signup' element={<SignUp/>} ></Route>
    <Route path='/sell' element={<SellPage/>} ></Route>
    <Route path='/form' element={<ProductForm/>} ></Route>
+   <Route path='/myAds' element={<MyAds/>} ></Route>
     </Routes>
     </>
   )

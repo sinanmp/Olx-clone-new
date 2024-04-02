@@ -100,7 +100,7 @@ function navbar({setIsProfileVisible,isProfileVisible}) {
 
         {user ? (
            <div className='pt-1 md:hidden flex  sellicon fixed bottom-8 left-0 right-0 justify-center'>
-           <button onClick={handleSellClick} className='border bg-black text-white sellbutton rounded-3xl pl-2 w-20 md:w-23 border-black font-semibold relative left- h-10'>
+           <button onClick={handleSellClick} className='border bg-white text-black sellbutton rounded-3xl pl-2 w-20 md:w-23 border-black font-semibold relative left- h-10'>
                <FaPlus className='absolute mt-[5px] pr-1 md:right-11 md:ml-5' size={15}/> SELL
            </button>
            </div>

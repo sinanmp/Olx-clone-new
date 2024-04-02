@@ -9,8 +9,8 @@ import { useAuth } from '../context/authContext';
 import ChatIcon from '@mui/icons-material/Chat';
 import UserProfileComponent from './UserProfileComponent';
 import { toast } from 'react-toastify';
-function navbar() {
- const [isProfileVisible, setIsProfileVisible] = useState(false);
+function navbar({setIsProfileVisible,isProfileVisible}) {
+
   const [search ,setSearch] = useState('')
   const {user} = useAuth()
   console.log(user , 'this is ufsadfsaser') 

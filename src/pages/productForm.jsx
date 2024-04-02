@@ -59,7 +59,7 @@ function ProductForm() {
 
         await addAd(obj)
         navigate('/')
-        toast.success("Your Ad is Uploaded",{
+        toast.success("Your Ad is Live",{
             autoClose:1000
         })
     } catch (error) {

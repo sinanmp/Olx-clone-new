@@ -25,10 +25,6 @@ function UserProfileComponent() {
         }
     }
 
-    const handleMyAds = ()=>{
-
-    }
-
   return (
     <>
          {loading && <LoadingSpinner />} 
@@ -43,7 +39,7 @@ function UserProfileComponent() {
         <div>
           <p className="font-semibold">{user.email}</p> {/* Display username */}
           <button onClick={handlLogout} className="bg-red-500 text-white px-3 py-1 rounded mt-2">Logout</button> {/* Logout button */}
-          <button onClick={handleMyAds} className="bg-yellow-600 text-white px-3 py-1 rounded mt-2">My ads</button> 
+          <button onClick={()=>navigate('/myAds')} className="bg-yellow-600 text-white px-3 py-1 rounded mt-2">My ads</button> 
         </div>
       </div>
     </div>

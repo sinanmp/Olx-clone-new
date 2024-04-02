@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { collection, getDocs } from 'firebase/firestore';
 import { db } from '../services/firebase.config';
+import LoadingSpinner from './LoadingSniper';
 
 
 function ProductCard({ index ,product}) {
@@ -17,7 +18,7 @@ function ProductCard({ index ,product}) {
     <span className="ml-1">Featured</span>
   </span>
   <img src={product.productImage} alt={product.name} className="w-full h-40 object-cover mb-4" />
-  <h2 className="text-xl font-semibold mb-2">{product.productName}</h2>
+  <h2 className="text-lg font-normal mb-2">{product.productName}</h2>
   <p className="text-gray-600 mb-4">{product.productDescription}</p>
   <div className="flex justify-start font-bold text-2xl items-center">
     ₹<span className=" font-semibold text-lg">{formattedPrice}</span>
@@ -31,9 +32,11 @@ function ProductCard({ index ,product}) {
 }
 
 function Products() {
+    const [loading, setLoading] = useState(false); 
     const [products, setProducts] = useState([]);
 
     useEffect(() => {
+        setLoading(true)
       const fetchProducts = async () => {
         try {
           const productsCollection = collection(db, 'products');
@@ -45,6 +48,8 @@ function Products() {
           setProducts(productsData);
         } catch (error) {
           console.error('Error fetching products:', error);
+        } finally{
+            setLoading(false)
         }
       };
   
@@ -55,6 +60,7 @@ function Products() {
 
     return (
         <>
+            {loading && <LoadingSpinner />} 
         <div className="container mx-auto max-w-screen-xl mt-[300px] md:mt-[600px] px-4 py-8">
       <h1 className="text-3xl font-semibold mb-4">OLX Featured</h1>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
@@ -77,6 +83,7 @@ function Products() {
         </>
       );
    }else{
+    {loading && <LoadingSpinner />} 
     <p className='mt-96'>No products</p>
    }
 }

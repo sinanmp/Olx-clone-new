@@ -1,10 +1,12 @@
 import { useEffect, useState } from 'react';
-import { collection, query, where, getDocs } from 'firebase/firestore';
+import { collection, query, where, getDocs, deleteDoc, doc } from 'firebase/firestore';
 import { db } from '../services/firebase.config';
 import { useAuth } from '../context/authContext';
 import Nav from '../components/Nav';
 import AdCard from '../components/AdCard';
 import LoadingSpinner from '../components/LoadingSniper';
+import { toast } from 'react-toastify';
+
 
 function MyAds() {
     const [loading ,setLoading]= useState(false)
@@ -23,6 +25,7 @@ function MyAds() {
                     productsData.push({ id: doc.id, ...doc.data() });
                 });
                 setProducts(productsData);
+                console.log(productsData)
             } catch (error) {
                 console.error('Error fetching products:', error);
             } finally {
@@ -31,7 +34,29 @@ function MyAds() {
         };
 
         fetchProducts();
-    }, [user.email]);
+    }, [user]);
+
+
+    const onDelete = async(adId , isModalOpen)=>{
+
+        try {
+            const productRef = doc(db, 'products', adId);
+            await deleteDoc(productRef);
+             isModalOpen(false)
+             const productsCollection = collection(db, 'products');
+             const q = query(productsCollection, where('email', '==', user.email));
+             const querySnapshot = await getDocs(q);
+             const productsData = [];
+             querySnapshot.forEach((doc) => {
+                 productsData.push({ id: doc.id, ...doc.data() });
+             });
+             setProducts(productsData);
+        } catch (error) {
+            console.log(error)
+        }
+
+    }
+
 
     if (!products.length) {
         return (
@@ -48,6 +73,7 @@ function MyAds() {
         )
     }
 
+
     return (
         <div>
         {loading && <LoadingSpinner />} 
@@ -56,7 +82,7 @@ function MyAds() {
                 <h1 className="text-3xl font-semibold mb-4">Your Ads</h1>
                 <p className="mb-4">Email: {user.email}</p>
                 {products.map((product) => (
-                    <AdCard key={product.id} product={product} />
+                    <AdCard key={product.id} onDelete={onDelete} product={product} />
                 ))}
             </div>
         </div>

@@ -88,14 +88,9 @@ function navbar({setIsProfileVisible,isProfileVisible}) {
           </div>
       )}
 
-
-  
-
-
-    
        
         <div className=' pt-1 md:flex hidden  sellicon'>
-            <button onClick={handleSellClick} className='border sellbutton rounded-3xl pl-2 w-20 md:w-23 border-black font-semibold relative left- h-10'><FaPlus className='absolute mt-[5px] pr-1 md:right-11 md:ml-5' size={15}/> SELL</button>
+            <button onClick={handleSellClick} className='border sellbutton rounded-3xl pl-2 w-20 md:w-23 border-black font-semibold relative right-3 h-10'><FaPlus className='absolute mt-[5px] pr-1 md:right-11 md:ml-5' size={15}/> SELL</button>
         </div>
 
         {user ? (

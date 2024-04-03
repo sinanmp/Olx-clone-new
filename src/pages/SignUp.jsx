@@ -59,8 +59,8 @@ export default function Signup() {
       <Nav/>
 
 
-      <div className="flex justify-center items-center h-screen">
-  <div className="border p-8 rounded-md shadow-md">
+      <div className="flex justify-center py-20 items-center h-400px">
+  <div className="border p-8 py  rounded-md shadow-md">
     <img onClick={()=>navigate('/')} src={logo}  className='mx-auto cursor-pointer w-32 h-32 mb-4' alt="" />
     <form onSubmit={handleFormSubmit}>
       <label htmlFor="name" className="block mb-2">Username</label>

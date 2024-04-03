@@ -12,7 +12,7 @@ function ProductCard({ index ,product}) {
     <>
 <div className="bg-white rounded-lg cursor-pointer shadow-md p-6 mb-4 relative overflow-hidden transition-transform duration-300 transform hover:scale-105">
   <span className={`absolute ${index < 4 ? 'flex' : 'hidden'}  top-6 left-6 bg-yellow-500 text-white py-1 px-2 rounded-tr-md rounded-bl-md`}>
-    <svg xmlns="http://www.w3.org/2000/svg" className="h-1 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+    <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
     </svg>
     <span className="ml-1">Featured</span>

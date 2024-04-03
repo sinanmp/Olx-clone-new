@@ -4,7 +4,9 @@ import { SignOut } from '../context/authContext';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { MdExitToApp } from 'react-icons/md';
 import LoadingSpinner from './LoadingSniper';
+import { MdListAlt } from 'react-icons/md';
 function UserProfileComponent() {
     const [loading , setLoading] = useState(false)
     const navigate = useNavigate()
@@ -38,8 +40,10 @@ function UserProfileComponent() {
         />
         <div>
           <p className="font-semibold">{user.email}</p> {/* Display username */}
-          <button onClick={handlLogout} className="bg-red-500 text-white px-3 py-1 rounded mt-2">Logout</button> {/* Logout button */}
-          <button onClick={()=>navigate('/myAds')} className="bg-yellow-600 text-white px-3 py-1 rounded mt-2">My ads</button> 
+          <div className='flex justify-between gap-5'>
+          <button onClick={()=>navigate('/myAds')} className="bg-yellow-600 flex gap-1 text-white px-3 py-1 rounded mt-2"><span className='mt-1'><MdListAlt/></span> My ads</button> 
+          <button onClick={handlLogout} className="bg-red-500 flex gap-1 text-white px-3 py-1 rounded mt-2"><span className='mt-1'><MdExitToApp/></span> Logout</button> {/* Logout button */}
+          </div>
         </div>
       </div>
     </div>

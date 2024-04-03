@@ -4,7 +4,7 @@ function ConfirmationModal({ isOpen, onClose, onConfirm }) {
     return (
         <>
             {isOpen && (
-                <div className="fixed top-0 left-0 w-full h-full bg-black bg-opacity-50 flex justify-center items-center z-50">
+                <div className="fixed top-0 left-0 w-full h-full bg-black bg-opacity-50 px-3 flex justify-center items-center z-50">
                     <div className="bg-white rounded-lg shadow-md p-8">
                         <p className="text-lg mb-4">Are you sure you want to delete this ad?</p>
                         <div className="flex justify-end">

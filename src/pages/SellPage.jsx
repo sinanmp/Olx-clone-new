@@ -49,7 +49,7 @@ function SellPage() {
 
       <h1 className="text-2xl font-bold pt-20 text-center">POST YOUR AD</h1>
 
-      <div className="flex justify-center items-center min-h-screen" style={{ marginTop: "-30px", paddingBottom: "50px" }}>
+      <div className="flex justify-center px-4 items-center min-h-screen" style={{ marginTop: "-30px", paddingBottom: "50px" }}>
         <div className='w-[400px] font-medium h-[576px] border block  border-gray-200'>
           {/* Render category items dynamically */}
           {categories.map((category, index) => (

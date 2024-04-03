@@ -79,7 +79,7 @@ function ProductForm() {
     
     <div className='relative top-32'>
         {/* <h1 className='text-center mb-5 capitalize'><span className='font-semibold'>More Details About Your </span>: {cat ? cat : 'product'}</h1> */}
-         <form onSubmit={handleSubmit} className="mx-auto max-w-md">
+         <form onSubmit={handleSubmit} className="mx-auto px-4 md:px-0 max-w-md">
       <div className="mb-4">
         <label htmlFor="productName" className="block font-semibold">Product Name:</label>
         <input

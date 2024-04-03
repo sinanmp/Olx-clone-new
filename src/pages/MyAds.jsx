@@ -25,7 +25,6 @@ function MyAds() {
                     productsData.push({ id: doc.id, ...doc.data() });
                 });
                 setProducts(productsData);
-                console.log(productsData)
             } catch (error) {
                 console.error('Error fetching products:', error);
             } finally {
@@ -51,6 +50,9 @@ function MyAds() {
                  productsData.push({ id: doc.id, ...doc.data() });
              });
              setProducts(productsData);
+             toast.warning("Your Ad is UnLived",{
+                autoClose:1000
+            })
         } catch (error) {
             console.log(error)
         }

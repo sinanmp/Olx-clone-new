@@ -40,6 +40,65 @@ function ProductForm() {
 
   const handleSubmit = async(e) => {
     e.preventDefault();
+
+
+    if(!productImage && !productName && !productPrice && !productDescription){
+      toast.error('Please fill all details',{
+        autoClose:1000
+      })
+      document.getElementById('productPrice').style.border='red solid 2px'
+      document.getElementById('productName').style.border='red solid 2px'
+      document.getElementById('productImage').style.border='red solid 2px'
+      document.getElementById('productDescription').style.border='red solid 2px'
+      return
+    }
+
+
+
+    if(!productName){
+      toast.error('Please enter Product Name also',{
+        autoClose:1000
+      })
+      document.getElementById('productName').style.border='red solid 2px'
+      return
+    }else{
+      document.getElementById('productName').style.border='gray solid 2px'
+    }
+
+
+   
+    if(!productPrice){
+      toast.error('Please enter productPrice also',{
+        autoClose:1000
+      })
+      document.getElementById('productPrice').style.border='red solid 2px'
+      return
+    }else{
+      document.getElementById('productPrice').style.border='gray solid 2px'
+    }
+
+    if(!productImage){
+      toast.error('Please enter productImage also',{
+        autoClose:1000
+      })
+      document.getElementById('productImage').style.border='red solid 2px'
+      return
+    }else{
+      document.getElementById('productImage').style.border='gray solid 2px'
+    }
+
+
+    if(!productDescription){
+      toast.error('Please enter productDescription also',{
+        autoClose:1000
+      })
+      document.getElementById('productDescription').style.border='red solid 2px'
+      return
+    }else{
+      document.getElementById('productDescription').style.border='gray solid 2px'
+    }
+
+
     setLoading(true);
     try{
 
@@ -87,7 +146,6 @@ function ProductForm() {
           id="productName"
           value={productName}
           onChange={handleProductNameChange}
-          required
           className="w-full border border-gray-300 rounded px-3 py-2 mt-1"
         />
       </div>
@@ -98,7 +156,6 @@ function ProductForm() {
           id="productPrice"
           value={productPrice}
           onChange={handleProductPriceChange}
-          required
           className="w-full border border-gray-300 rounded px-3 py-2 mt-1"
         />
       </div>
@@ -118,7 +175,6 @@ function ProductForm() {
           id="productDescription"
           value={productDescription}
           onChange={handleProductDescriptionChange}
-          required
           className="w-full border border-gray-300 rounded px-3 py-2 mt-1"
         ></textarea>
       </div>

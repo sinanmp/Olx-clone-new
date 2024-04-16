@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { BsEyeFill, BsEyeSlashFill } from 'react-icons/bs'
 import { useNavigate } from 'react-router-dom'
 import { loginUser } from '../context/authContext'
@@ -8,13 +8,27 @@ import Footer from '../components/footer';
 import '../assets/google.css'
 import { handleGoogleSignIn } from '../context/authContext';
 import LoadingSpinner from '../components/LoadingSniper';
+import { useAuth } from '../context/authContext';
 
 function Login(){
+  const {user} = useAuth()
   const [loading, setLoading] = useState(false); 
     const [email ,setEmail] =useState('')
     const [password , setPassword] = useState('')
     const navigate = useNavigate()
     const [showPassword, setShowPassword] = useState(false);
+
+
+    useEffect(()=>{
+      if(user){
+        navigate('/')
+      }else{
+        navigate('/login')
+      }
+    },[])
+
+
+
 
     const handleFormSubmit =async(e)=>{
         e.preventDefault()
@@ -33,6 +47,7 @@ function Login(){
         }
 
     }
+
 
     const handleGoogle = async(e)=>{
       setLoading(true)

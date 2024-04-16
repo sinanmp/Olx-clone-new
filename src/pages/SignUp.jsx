@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import logo from '../assets/olx-seeklogo.png'
 import { BsEyeFill, BsEyeSlashFill } from "react-icons/bs";
 import { handleGoogleSignIn, signUp } from '../context/authContext';
@@ -8,8 +8,10 @@ import Nav from '../components/Nav';
 import '../assets/google.css'
 import Footer from '../components/footer';
 import LoadingSpinner from '../components/LoadingSniper';
+import { useAuth } from '../context/authContext';
 
 export default function Signup() {
+  const {user} = useAuth()
   const [loading , setLoading] = useState(false)
     let [name , setName] = useState('')
     let [email , setEmail] = useState('')
@@ -17,6 +19,16 @@ export default function Signup() {
     let [password , setPassword] = useState('')
     const [showPassword, setShowPassword] = useState(false);
     const navigate = useNavigate()
+
+
+    useEffect(()=>{
+      if(user){
+        navigate('/')
+      }else{
+        navigate('/signup')
+      }
+    },[])
+
 
 
     const handleFormSubmit = async(e)=>{
